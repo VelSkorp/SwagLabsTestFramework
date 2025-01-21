@@ -2,12 +2,12 @@ import logging
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions
 
 logger = logging.getLogger(__name__)
 
 
-class BasePage:
+class BaseLoggedInPage:
     def __init__(self, driver):
         self.driver = driver
 
@@ -18,7 +18,7 @@ class BasePage:
 
         wait = WebDriverWait(self.driver, 10)
         logout_link = wait.until(
-            EC.element_to_be_clickable((By.ID, "logout_sidebar_link"))
+            expected_conditions.element_to_be_clickable((By.ID, "logout_sidebar_link"))
         )
         logout_link.click()
 

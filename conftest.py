@@ -23,7 +23,7 @@ def configure_logging():
     A fixture for configuring session-level logging.
     """
     logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     # Customizing the format
     formatter = logging.Formatter("[%(levelname)s] %(asctime)s - %(name)s: %(message)s")

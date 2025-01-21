@@ -1,16 +1,16 @@
 import logging
 
 from selenium.webdriver.common.by import By
-from tests.pages.base_page import BasePage
+from tests.pages.base_logged_in_page import BaseLoggedInPage
 
 logger = logging.getLogger(__name__)
 
 
-class ProductsPage(BasePage):
+class ProductsPage(BaseLoggedInPage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
-    def get_product_titles(self):
+    def get_product_titles(self) -> list[str]:
         logger.debug("Returns a list of product names on the page.")
         product_elements = self.driver.find_elements(
             By.CLASS_NAME, "inventory_item_name"

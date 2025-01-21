@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -9,7 +10,7 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 class BrowserFactory:
     @staticmethod
-    def create_driver(browser_name: str = "chrome"):
+    def create_driver(browser_name: str = "chrome") -> WebDriver:
         browser_name = browser_name.lower()
 
         if browser_name == "chrome":
