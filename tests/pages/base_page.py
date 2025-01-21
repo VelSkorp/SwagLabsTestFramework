@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 logger = logging.getLogger(__name__)
 
+
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
@@ -25,3 +26,8 @@ class BasePage:
         logger.debug("Clicks shopping cart icon.")
         cart_button = self.driver.find_element(By.CLASS_NAME, "shopping_cart_link")
         cart_button.click()
+
+    def get_cart_badge_count(self) -> int:
+        logger.debug("Get cart badge count.")
+        cart_badge = self.driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
+        return int(cart_badge.text)

@@ -6,6 +6,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+
 class BrowserFactory:
     @staticmethod
     def create_driver(browser_name: str = "chrome"):

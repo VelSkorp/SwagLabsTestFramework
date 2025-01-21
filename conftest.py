@@ -2,6 +2,7 @@ import pytest
 import logging
 from tests.browser_factory import BrowserFactory
 
+
 def pytest_addoption(parser):
     """
     Add a custom --browser option to select a browser when running tests:
@@ -12,8 +13,9 @@ def pytest_addoption(parser):
         "--browser",
         action="store",
         default="chrome",
-        help="Browser to run tests (chrome or firefox)"
+        help="Browser to run tests (chrome or firefox)",
     )
+
 
 @pytest.fixture(scope="session", autouse=True)
 def configure_logging():
@@ -35,6 +37,7 @@ def configure_logging():
         logger.addHandler(console_handler)
 
     yield
+
 
 @pytest.fixture(scope="function")
 def driver(request):

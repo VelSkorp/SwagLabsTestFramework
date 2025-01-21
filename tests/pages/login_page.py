@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 logger = logging.getLogger(__name__)
 
+
 class LoginPage:
     URL = "https://www.saucedemo.com/"
 
