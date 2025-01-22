@@ -65,16 +65,34 @@ A minimal test framework in Python that automates the https://www.saucedemo.com/
 
 ## Test Scenarios
 
-1. `test_swag_labs_flow`
-    - Logs in with valid credentials (`standard_user` / `secret_sauce`).
-    - Verifies landing on the inventory page.
-    - Prints (logs) the list of products.
-    - Adds the first product to the cart; checks the cart count.
-    - Navigates to the cart; checks the number of items.
-    - Removes an item from the cart; checks it is empty.
-    - Logs out; checks if returned to the login page.
+1. `test_list_products`
+    - Logs in (using the `logged_in` fixture).
+    - Retrieves and logs all products on the Products page.
+    - Asserts there is at least one product listed.
 
-2. `test_login_flow` (parametrized)
+2. `test_add_first_item_to_cart`
+    - Logs in.
+    - Adds the first item to the cart.
+    - Checks that the cart badge shows exactly 1 item.
+
+3. `test_go_to_cart_page`
+    - Logs in.
+    - Adds an item to the cart.
+    - Navigates to the cart page.
+    - Verifies that the current URL contains `/cart.html`.
+
+4. `test_cart_has_single_item`
+    - Logs in.
+    - Adds one item to the cart and navigates there.
+    - Verifies that the cart contains exactly 1 item.
+
+5. `test_remove_item_from_cart`
+    - Logs in.
+    - Adds an item to the cart; navigates to the cart.
+    - Removes the item.
+    - Checks that the cart is empty afterward.
+
+6. `test_login_form` (parametrized)
     - Runs with multiple sets of credentials:
         - **Valid**: `standard_user`, `secret_sauce`
             - Expects to see "`inventory`" in the URL.

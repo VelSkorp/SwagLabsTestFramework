@@ -1,6 +1,10 @@
 import pytest
 import logging
 from tests.browser_factory import BrowserFactory
+from tests.pages.login_page import LoginPage
+from tests.pages.base_logged_in_page import BaseLoggedInPage
+
+logger = logging.getLogger(__name__)
 
 
 def pytest_addoption(parser):
@@ -45,3 +49,23 @@ def driver(request):
     driver = BrowserFactory.create_driver(browser_name)
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def logged_in(driver):
+    logger.info("Log in")
+    login_page = LoginPage(driver)
+    login_page.open()
+    login_page.login("standard_user", "secret_sauce")
+    assert (
+        "inventory" in driver.current_url
+    ), "After login we expect to get to /inventory.html"
+
+    yield driver
+
+    logger.info("Log out")
+    base_logged_in = BaseLoggedInPage(driver)
+    base_logged_in.open_menu_and_logout()
+    assert (
+        "saucedemo.com" in driver.current_url
+    ), "The URL does not contain saucedemo.com, it seems we are not on the login page."
